@@ -16,15 +16,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 import java.awt.event.*;
- 
+
 public class main extends JFrame implements ActionListener//new class has access to all functionality in JFrame
 {
     JButton howto;
     JButton newgame;
     JButton oldgame;
     JPanel panel1;
+    private GameGUI gameGui = new GameGUI();
+
     public main()
     {
+    
+
         //sets up window
         setTitle("memory card game");
         this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //600 wide 400 high
@@ -52,6 +56,14 @@ public class main extends JFrame implements ActionListener//new class has access
         this.pack();
         this.toFront();
         this.setVisible(true);
+    addWindowListener(new WindowAdapter()
+      {
+      public void windowClosing(WindowEvent e)
+      {
+         dispose();
+         System.exit(0); //calling the method is a must
+      }
+      });
         
     }
     public void actionPerformed(ActionEvent e){
@@ -64,8 +76,7 @@ public class main extends JFrame implements ActionListener//new class has access
                 
             case "new game":
                  setTitle(" nlkjlkj");
-        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //600 wide 400 high
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        GameGUI.setVisible(true);
         break;
                 
             default:
@@ -74,6 +85,6 @@ public class main extends JFrame implements ActionListener//new class has access
         }
     }
 
+    }
+   
   
-      }
-
