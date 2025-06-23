@@ -23,7 +23,7 @@ public class main extends JFrame implements ActionListener//new class has access
     JButton newgame;
     JButton oldgame;
     JPanel panel1;
-    private GameGUI gameGui = new GameGUI();
+    private game game = new game();
 
     public main()
     {
@@ -41,30 +41,23 @@ public class main extends JFrame implements ActionListener//new class has access
      panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 50));
     panel1.setBackground(Color.pink);
     this.add(panel1, BorderLayout.CENTER); 
-    
+
     howto = new JButton("how to play");
+    howto.setFont(new Font("Algerian", Font.BOLD, 50));
     howto.addActionListener(this);
     panel1.add(howto);
      
     newgame = new JButton("new game");
+    newgame.addActionListener(this);
     panel1.add(newgame);
-     
+    
     oldgame = new JButton("old games");
     panel1.add(oldgame);
      
         //makes window visible
         this.pack();
         this.toFront();
-        this.setVisible(true);
-    addWindowListener(new WindowAdapter()
-      {
-      public void windowClosing(WindowEvent e)
-      {
-         dispose();
-         System.exit(0); //calling the method is a must
-      }
-      });
-        
+        this.setVisible(true);        
     }
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
@@ -75,9 +68,10 @@ public class main extends JFrame implements ActionListener//new class has access
                 break;
                 
             case "new game":
-                 setTitle(" nlkjlkj");
-        GameGUI.setVisible(true);
-        break;
+                 this.dispose();
+                
+                 game.setVisible(true);
+                break;
                 
             default:
                 System.out.println("invalid");
