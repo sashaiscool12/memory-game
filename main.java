@@ -16,19 +16,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 import java.awt.event.*;
+import java.awt.Font;
 
 public class main extends JFrame implements ActionListener//new class has access to all functionality in JFrame
 {
     JButton howto;
     JButton newgame;
-    JButton oldgame;
+    JButton oldgame; // 3 diff buttons
     JPanel panel1;
     private game game = new game();
 
     public main()
     {
-    
-
         //sets up window
         setTitle("memory card game");
         this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //600 wide 400 high
@@ -43,18 +42,22 @@ public class main extends JFrame implements ActionListener//new class has access
     this.add(panel1, BorderLayout.CENTER); 
 
     howto = new JButton("how to play");
-    howto.setFont(new Font("Algerian", Font.BOLD, 50));
+    howto.setFont(new Font("Verdana", Font.ITALIC, 30));
+
     howto.addActionListener(this);
     panel1.add(howto);
      
     newgame = new JButton("new game");
-    howto.setFont(new Font("Algerian", Font.BOLD, 50));
+    newgame.setFont(new Font("Verdana", Font.ITALIC, 30));
     newgame.addActionListener(this);
     panel1.add(newgame);
     
     oldgame = new JButton("old games");
-    howto.setFont(new Font("Algerian", Font.BOLD, 50));
+    oldgame.setFont(new Font("Verdana", Font.ITALIC, 30));
     panel1.add(oldgame);
+    
+ 
+    
      
         //makes window visible
         this.pack();
@@ -67,11 +70,17 @@ public class main extends JFrame implements ActionListener//new class has access
         switch(cmd) {
             case "how to play":
                 System.out.println("hi");
+                JDialog box = new JDialog(this);
+                box.setBounds(600, 600, 600, 600);
+                TextArea boxInfo = new TextArea("first find 2 pairs then  blaaa blaa blaaa");
+                boxInfo.setEditable(false);
+                box.add(boxInfo);    
+                box.setVisible(true);
+                box.setTitle("how 2 play");
                 break;
                 
             case "new game":
                  this.dispose();
-                
                  game.setVisible(true);
                 break;
                 

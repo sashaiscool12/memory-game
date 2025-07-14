@@ -16,34 +16,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 import java.awt.event.*;
+import javax.swing.Timer; 
+import java.util.Random;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class game extends JFrame implements ActionListener {
     JPanel panel1;
     
-    String card = "question.png";
-    JButton cardbutton;
-    
-    
-    String turtle = "turtle.png";
-    JButton turtlebutton;
-    String turtleCurrent = turtle;
-    String cardButton = card;
-    String dog = "dog.png";
-    JButton dogbutton;
-    
-    String flamingo = "flamingo.png";
-    JButton flamingobutton;
-    
-    String butterfly = "butterfly.png";
-    JButton butterflybutton;
+  
+   // String turtle = "turtle.png";
+ //   JButton turtlebutton;
+   // String turtleCurrent = turtle;
+
     
     private JLabel imageLabel;
     private JButton switchButton;
+    cards[] cardlist = new cards[12]; //maing empty card list of 12 cards so i can have them randomly put into this 
+     Random rand = new Random(); //random number gen
+    
+    
+     ArrayList<String> cardList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
+     
+    ArrayList<String> emptycardList = new ArrayList<>(); //empty array list to put card into wuhne two cards are created
+        
     
     public JFrame game = new JFrame("game window");
     {
-
-        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //600 wide 400 high
+        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //1000 wide 1000 high
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         //set up panel
@@ -53,48 +53,34 @@ public class game extends JFrame implements ActionListener {
         this.add(panel1, BorderLayout.CENTER); 
         
         
-        turtlebutton = new JButton();
-        turtlebutton.setIcon(new ImageIcon(turtle));
-        turtlebutton.setPreferredSize(new Dimension(200, 200));
-        turtlebutton.addActionListener(this);
-        panel1.add(turtlebutton);
+      //  turtlebutton = new JButton();
+       // turtlebutton.setIcon(new ImageIcon(turtle));
+       // turtlebutton.setPreferredSize(new Dimension(200, 200));
+       // turtlebutton.addActionListener(this);
+       // panel1.add(turtlebutton);
+        
+        for (int i = 0; i < cardlist.length; i++) {
+            int randomIndex = rand.nextInt(cardList.size()); 
+      
+           System.out.println(cardList);
+        }
         
         
-        dogbutton = new JButton();
-        dogbutton.setIcon(new ImageIcon(dog));
-        dogbutton.setPreferredSize(new Dimension(200, 200));
-        panel1.add(dogbutton);
-        //dogbutton.setVisible(false);
-        
-        flamingobutton = new JButton();
-        flamingobutton.setIcon(new ImageIcon(flamingo));
-        flamingobutton.setPreferredSize(new Dimension(200, 200));
-        panel1.add(flamingobutton);
-        
-        butterflybutton = new JButton();
-        butterflybutton.setIcon(new ImageIcon(butterfly));
-        butterflybutton.setPreferredSize(new Dimension(200, 200));
-        panel1.add(butterflybutton);
-        
-        cardbutton = new JButton();
-        cardbutton.setIcon(new ImageIcon(card));
-        cardbutton.setPreferredSize(new Dimension(200, 200));
-        panel1.add(cardbutton);
-        
-        imageLabel = new JLabel();
+           
         
         this.pack();
         this.toFront();
-        this.setVisible(true);
+    //    this.setVisible(true);
     }
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == turtlebutton){
-            if(turtleCurrent.equals(card)){
-                turtleCurrent = cardButton;
-            } else{
-                turtleCurrent = turtleCurrent;
-            }
-            turtlebutton.setIcon(new ImageIcon(card));
+     //   if(e.getSource() == turtlebutton){
+      //      if(turtleCurrent.equals(card)){
+       //         turtleCurrent = cardButton;
+         //   } else{
+          //      turtleCurrent = turtleCurrent;
+           // }
+           // turtlebutton.setIcon(new ImageIcon(card));
         }
     }
-}
+   
+
