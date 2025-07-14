@@ -48,10 +48,12 @@ public class main extends JFrame implements ActionListener//new class has access
     panel1.add(howto);
      
     newgame = new JButton("new game");
+    howto.setFont(new Font("Algerian", Font.BOLD, 50));
     newgame.addActionListener(this);
     panel1.add(newgame);
     
     oldgame = new JButton("old games");
+    howto.setFont(new Font("Algerian", Font.BOLD, 50));
     panel1.add(oldgame);
      
         //makes window visible
@@ -81,4 +83,3 @@ public class main extends JFrame implements ActionListener//new class has access
 
     }
    
-  
