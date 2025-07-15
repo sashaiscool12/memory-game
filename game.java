@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+
 public class game extends JFrame implements ActionListener {
     JPanel panel1;
     
@@ -36,10 +37,10 @@ public class game extends JFrame implements ActionListener {
      Random rand = new Random(); //random number gen
     
     
-     ArrayList<String> cardList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
+     ArrayList<String> cardsList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
      
     ArrayList<String> emptycardList = new ArrayList<>(); //empty array list to put card into wuhne two cards are created
-        
+         int found = cardsList.size(); 
     
     public JFrame game = new JFrame("game window");
     {
@@ -59,12 +60,20 @@ public class game extends JFrame implements ActionListener {
        // turtlebutton.addActionListener(this);
        // panel1.add(turtlebutton);
         
-        for (int i = 0; i < cardlist.length; i++) {
-            int randomIndex = rand.nextInt(cardList.size()); 
-      
-           System.out.println(cardList);
-        }
+        for (int i = 0; i < cardlist.length; i++) { //making for loop for all the cards on the board, 12 of them, using ranodm to randomly place them
+            int randomIndex = rand.nextInt(cardsList.size()); 
+            cardlist[i] = new cards(cardsList.get(randomIndex));
+            cardlist[i].getCard().addActionListener(this);
+            
+           System.out.println(cardsList.contains("turtle.png"));
         
+           if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
+                cardsList.remove(randomIndex);  
+            } else {
+               emptycardList.add(cardsList.get(randomIndex)); }
+             panel1.add(cardlist[i].getCard());
+            
+        }
         
            
         

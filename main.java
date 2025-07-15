@@ -72,7 +72,7 @@ public class main extends JFrame implements ActionListener//new class has access
                 System.out.println("hi");
                 JDialog box = new JDialog(this);
                 box.setBounds(600, 600, 600, 600);
-                TextArea boxInfo = new TextArea("first find 2 pairs then  blaaa blaa blaaa");
+                TextArea boxInfo = new TextArea("first find 2 pairs then blaaa blaa blaaa");
                 boxInfo.setEditable(false);
                 box.add(boxInfo);    
                 box.setVisible(true);

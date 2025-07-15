@@ -19,6 +19,21 @@ import java.util.ArrayList;
 
 public class cards extends JButton
 {
- 
+   private String cardtype; 
+    private JButton cardbutton;  //making card an object
+    String question = "question.png";
+   JButton questionbutton; 
+     public JButton getCard()
+    {
+        return cardbutton;
+    }
+     public cards(String stringcardtype)
+    {
+        cardtype = stringcardtype;  // new varaibel for card type based on the image (dog, giraffe etc)
+          cardbutton = new JButton();
+        cardbutton.setIcon(new ImageIcon(question));  // default is question img
+        cardbutton.setPreferredSize(new Dimension(200, 200));
+    }
+
 }
  
