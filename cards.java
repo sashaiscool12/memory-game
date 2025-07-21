@@ -23,6 +23,9 @@ public class cards extends JButton
     private JButton cardbutton;  //making card an object
     String question = "question.png";
    JButton questionbutton; 
+    private boolean cardclicked;  // if the card is clicked it becomes true
+   
+  
      public JButton getCard()
     {
         return cardbutton;
@@ -33,7 +36,17 @@ public class cards extends JButton
           cardbutton = new JButton();
         cardbutton.setIcon(new ImageIcon(question));  // default is question img
         cardbutton.setPreferredSize(new Dimension(200, 200));
+        boolean cardclicked = false;
     }
 
+    public void cardsFlip(){ 
+        if (cardclicked){
+            cardbutton.setIcon(new ImageIcon("question.png"));
+        } else {
+            cardbutton.setIcon(new ImageIcon(cardtype));
+        }
+        boolean cardclicked = true;
+    }
+     
 }
  

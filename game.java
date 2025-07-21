@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import java.util.Random;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class game extends JFrame implements ActionListener {
@@ -36,8 +37,15 @@ public class game extends JFrame implements ActionListener {
     cards[] cardlist = new cards[12]; //maing empty card list of 12 cards so i can have them randomly put into this 
      Random rand = new Random(); //random number gen
     
+     Boolean card1 = false; // first card clicked
+     Boolean card2 = false; // second card clicked false at first cuz it wil be true when 
     
+     int card1list; //to put card1 into
+     int card2list; //to put card 2 into 
+     
+     
      ArrayList<String> cardsList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
+     
      
     ArrayList<String> emptycardList = new ArrayList<>(); //empty array list to put card into wuhne two cards are created
          int found = cardsList.size(); 
@@ -65,14 +73,13 @@ public class game extends JFrame implements ActionListener {
             cardlist[i] = new cards(cardsList.get(randomIndex));
             cardlist[i].getCard().addActionListener(this);
             
-           System.out.println(cardsList.contains("turtle.png"));
+           System.out.println(cardsList.contains("giraffe.png"));
         
            if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
                 cardsList.remove(randomIndex);  
             } else {
                emptycardList.add(cardsList.get(randomIndex)); }
              panel1.add(cardlist[i].getCard());
-            
         }
         
            
@@ -89,7 +96,13 @@ public class game extends JFrame implements ActionListener {
           //      turtleCurrent = turtleCurrent;
            // }
            // turtlebutton.setIcon(new ImageIcon(card));
+            for (int i = 0; i < cardlist.length; i++) { // for loop to go thru all the cards
+             if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked
+                 cardlist[i].cardsFlip(); 
+                Boolean card1 = false; 
+            } 
         }
     }
-   
+}
+
 
