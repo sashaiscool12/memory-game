@@ -30,7 +30,7 @@ public class game extends JFrame implements ActionListener {
    // String turtle = "turtle.png";
  //   JButton turtlebutton;
    // String turtleCurrent = turtle;
-
+    int clicked;
     
     private JLabel imageLabel;
     private JButton switchButton;
@@ -43,6 +43,7 @@ public class game extends JFrame implements ActionListener {
      int card1list; //to put card1 into
      int card2list; //to put card 2 into 
      
+     boolean cardVisible;
      
      ArrayList<String> cardsList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
      
@@ -73,7 +74,7 @@ public class game extends JFrame implements ActionListener {
             cardlist[i] = new cards(cardsList.get(randomIndex));
             cardlist[i].getCard().addActionListener(this);
             
-           System.out.println(cardsList.contains("giraffe.png"));
+           //System.out.println(cardsList.contains("giraffe.png"));
         
            if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
                 cardsList.remove(randomIndex);  
@@ -99,10 +100,17 @@ public class game extends JFrame implements ActionListener {
             for (int i = 0; i < cardlist.length; i++) { // for loop to go thru all the cards
              if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked
                  cardlist[i].cardsFlip(); 
-                Boolean card1 = false; 
-            } 
+                    Boolean card1 = false; 
+                   clicked++;
+                    if(clicked == 2){
+                         System.out.println("Hi?");
+                         clicked = 0;
+                    }
         }
-    }
+        
+        //visible check thru al of the ones
+        }
+}
 }
 
 

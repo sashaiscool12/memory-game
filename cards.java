@@ -46,6 +46,9 @@ public class cards extends JButton
             cardbutton.setIcon(new ImageIcon(cardtype));
         }
         boolean cardclicked = true;
+        if (cardclicked = true){
+            System.out.println("hi");
+        }
     }
      
 }
