@@ -40,16 +40,30 @@ public class cards extends JButton
     }
 
     public void cardsFlip(){ 
+        boolean cardclicked = false;
         if (cardclicked){
+            cardclicked = true;
             cardbutton.setIcon(new ImageIcon("question.png"));
+            
         } else {
-            cardbutton.setIcon(new ImageIcon(cardtype));
-        }
-        boolean cardclicked = true;
-        if (cardclicked = true){
-            System.out.println("hi");
+           cardbutton.setIcon(new ImageIcon(cardtype));
         }
     }
-     
-}
- 
+    public void cardsUnflip() {
+        boolean cardclicked = true;
+        if (cardclicked){
+            cardclicked = true;
+            cardbutton.setIcon(new ImageIcon("question.png"));
+            
+        } else {
+           cardbutton.setIcon(new ImageIcon(cardtype));
+        }
+    }
+    
+   // public void card1Clicked() {
+        //if (card1 = false && card2 = false){
+            
+       // }
+    
+    }
+        

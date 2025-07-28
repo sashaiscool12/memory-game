@@ -73,7 +73,7 @@ public class game extends JFrame implements ActionListener {
             int randomIndex = rand.nextInt(cardsList.size()); 
             cardlist[i] = new cards(cardsList.get(randomIndex));
             cardlist[i].getCard().addActionListener(this);
-            
+          //  int randomIndex = rand.nextInt(cardsList.size()); 
            //System.out.println(cardsList.contains("giraffe.png"));
         
            if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
@@ -96,21 +96,49 @@ public class game extends JFrame implements ActionListener {
          //   } else{
           //      turtleCurrent = turtleCurrent;
            // }
-           // turtlebutton.setIcon(new ImageIcon(card));
+           // turtlebutton.setIcon(new ImageIcon(card));\\````
             for (int i = 0; i < cardlist.length; i++) { // for loop to go thru all the cards
              if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked
+                 if (clicked == 0) {
+                     card1list = i;
+                     card1 = true;
+                    cardlist[i].getCard();
+                 } else if (clicked == 1) {
+                     card2list = i;
+                     card2 = true;
+                     cardlist[i].getCard();
+                     System.out.println(cardlist);
+                    if (cardlist[card1].getCard == cardlist[i].getCard()){
+                        System.out.println("ok");
+                         cardlist[card1list].cardsUnflip();
+                             cardlist[card2list].cardsUnflip();
+                    }
+                 } 
+                 
                  cardlist[i].cardsFlip(); 
                     Boolean card1 = false; 
+                    Boolean card2 = false; 
                    clicked++;
-                    if(clicked == 2){
-                         System.out.println("Hi?");
+                    if(clicked == 3){
+                         if (e.getSource() == cardlist[i].getCard()){
+                             System.out.println("Hi?");
+                             cardlist[card1list].cardsUnflip();
+                         cardlist[card2list].cardsUnflip();
+                            card1list = -1;
+                             card2list = -1;
                          clicked = 0;
+                         System.out.println(card1list);
+                          
+                        }
                     }
         }
         
         //visible check thru al of the ones
-        }
-}
-}
+        
 
 
+
+
+    }
+}
+}
