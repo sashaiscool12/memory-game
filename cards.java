@@ -38,7 +38,11 @@ public class cards extends JButton
         cardbutton.setPreferredSize(new Dimension(200, 200));
         boolean cardclicked = false;
     }
-
+ public String cardType()
+    {
+        return cardtype;
+    }
+   //
     public void cardsFlip(){ 
         boolean cardclicked = false;
         if (cardclicked){
@@ -60,10 +64,6 @@ public class cards extends JButton
         }
     }
     
-   // public void card1Clicked() {
-        //if (card1 = false && card2 = false){
-            
-       // }
+}
     
-    }
         

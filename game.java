@@ -99,46 +99,39 @@ public class game extends JFrame implements ActionListener {
            // turtlebutton.setIcon(new ImageIcon(card));\\````
             for (int i = 0; i < cardlist.length; i++) { // for loop to go thru all the cards
              if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked
-                 if (clicked == 0) {
-                     card1list = i;
-                     card1 = true;
-                    cardlist[i].getCard();
-                 } else if (clicked == 1) {
-                     card2list = i;
-                     card2 = true;
-                     cardlist[i].getCard();
-                     System.out.println(cardlist);
-                    if (cardlist[card1].getCard == cardlist[i].getCard()){
-                        System.out.println("ok");
-                         cardlist[card1list].cardsUnflip();
-                             cardlist[card2list].cardsUnflip();
+                if (card1list == -1) { 
+                    card1list = i;  
+                   // System.out.println(card1list);
+                    cardlist[i].cardsFlip();  
+                } else if (card1list > -1 && card2list == -1) { 
+                    if (card1list == i) {
+                        card1list = -1;
+                        cardlist[i].cardsFlip();
+
+                    } else if (cardlist[i].cardType() == cardlist[card1list].cardType()) {
+                      //  cardlist[i].cardsFlip();
+                    System.out.println(card1list);
+                       System.out.println(card2list);
+                        cardlist[i].getCard().removeActionListener(this);
+                        cardlist[card1list].getCard().removeActionListener(this);
+                        card1list = -1;  
+                        card2list = -1;  
+                         } else {
+                        cardlist[i].cardsFlip();
+                        card2list = i;
+                        
+                        
                     }
-                 } 
-                 
-                 cardlist[i].cardsFlip(); 
-                    Boolean card1 = false; 
-                    Boolean card2 = false; 
-                   clicked++;
-                    if(clicked == 3){
-                         if (e.getSource() == cardlist[i].getCard()){
-                             System.out.println("Hi?");
-                             cardlist[card1list].cardsUnflip();
-                         cardlist[card2list].cardsUnflip();
-                            card1list = -1;
-                             card2list = -1;
-                         clicked = 0;
-                         System.out.println(card1list);
-                          
+                   } else {
+                    cardlist[card1list].cardsFlip();
+                    cardlist[card2list].cardsFlip();
+                    card1list = -1;
+                    card2list = -1;
+
                         }
                     }
         }
         
-        //visible check thru al of the ones
-        
-
-
-
-
-    }
+     
 }
 }
