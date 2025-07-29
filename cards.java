@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class cards here.
  *
@@ -42,28 +41,16 @@ public class cards extends JButton
     {
         return cardtype;
     }
-   //
-    public void cardsFlip(){ 
-        boolean cardclicked = false;
+     public void cardsFlip(){
         if (cardclicked){
-            cardclicked = true;
+            cardclicked = false;
             cardbutton.setIcon(new ImageIcon("question.png"));
-            
+           
         } else {
+            cardclicked = true;
            cardbutton.setIcon(new ImageIcon(cardtype));
         }
     }
-    public void cardsUnflip() {
-        boolean cardclicked = true;
-        if (cardclicked){
-            cardclicked = true;
-            cardbutton.setIcon(new ImageIcon("question.png"));
-            
-        } else {
-           cardbutton.setIcon(new ImageIcon(cardtype));
-        }
-    }
-    
+ 
+      
 }
-    
-        
