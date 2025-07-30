@@ -37,8 +37,8 @@ public class game extends JFrame implements ActionListener {
     Boolean card1 = false; // first card clicked
     Boolean card2 = false; // second card clicked false at first cuz it wil be true when 
 
-    int card1list; //to put card1 into
-    int card2list; //to put card 2 into 
+    int card1list = -1; //to put card1 into
+    int card2list = -1;  //to put card 2 into 
 
     boolean cardVisible;
 
@@ -104,25 +104,25 @@ public class game extends JFrame implements ActionListener {
                         cardlist[i].cardsFlip();
 
                     } else if (cardlist[i].cardType() == cardlist[card1list].cardType()) {
-                        //  cardlist[i].cardsFlip();
+                         cardlist[i].cardsFlip();
                         System.out.println(card1list);
                         System.out.println(card2list);
                         cardlist[i].getCard().removeActionListener(this);
                         cardlist[card1list].getCard().removeActionListener(this);
                         card1list = -1;  
                         card2list = -1;  
+                        
                     } else {
                         cardlist[i].cardsFlip();
                         card2list = i;
-
-                    }
+                    } 
                 } else {
-          
-                    card1list = -1;
-                    card2list = -1;
                     cardlist[card1list].cardsFlip();
-                    cardlist[card2list].cardsFlip();    
-                    System.out.println(card1list);
+                    cardlist[card2list].cardsFlip();  
+                    card2list = -1;
+                   cardlist[i].cardsFlip();
+                   card1list = i;  
+
                 }
             }
         }
