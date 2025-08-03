@@ -29,7 +29,7 @@ public class main extends JFrame implements ActionListener//new class has access
     public main()
     {
         //sets up window
-        setTitle("memory card game");
+        setTitle("sasha's super sick memory card game");
         this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //600 wide 400 high
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -56,7 +56,7 @@ public class main extends JFrame implements ActionListener//new class has access
     oldgame.setFont(new Font("Verdana", Font.ITALIC, 30));
     panel1.add(oldgame);
     
- 
+    
     
      
         //makes window visible
@@ -73,6 +73,7 @@ public class main extends JFrame implements ActionListener//new class has access
                 JDialog box = new JDialog(this);
                 box.setBounds(600, 600, 600, 600);
                 TextArea boxInfo = new TextArea("first find 2 pairs then blaaa blaa blaaa");
+                   boxInfo.setFont(new Font("Verdana", Font.ITALIC, 15));
                 boxInfo.setEditable(false);
                 box.add(boxInfo);    
                 box.setVisible(true);
@@ -82,6 +83,7 @@ public class main extends JFrame implements ActionListener//new class has access
             case "new game":
                  this.dispose();
                  game.setVisible(true);
+                 
                 break;
                 
             default:

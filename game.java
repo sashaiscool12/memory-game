@@ -28,6 +28,7 @@ public class game extends JFrame implements ActionListener {
     //   JButton turtlebutton;
     // String turtleCurrent = turtle;
     int clicked;
+    JLabel label1;
 
     private JLabel imageLabel;
     private JButton switchButton;
@@ -40,14 +41,15 @@ public class game extends JFrame implements ActionListener {
     int card1list = -1; //to put card1 into
     int card2list = -1;  //to put card 2 into 
 
-    boolean cardVisible;
-
+    boolean cardVisible; 
+    private Timer timer;
+    private int seconds = 0;
     ArrayList<String> cardsList = new ArrayList<>(Arrays.asList("turtle.png", "dog.png", "flamingo.png", "butterfly.png", "pig.png", "giraffe.png"));
 
     ArrayList<String> emptycardList = new ArrayList<>(); //empty array list to put card into wuhne two cards are created
-    int found = cardsList.size(); 
+    int found = cardsList.size();  // an integer for if the user gotten all the pairs
 
-    public JFrame game = new JFrame("game window");
+    public JFrame game = new JFrame("sasha's super sick memory card game");
     {
         this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //1000 wide 1000 high
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -57,6 +59,9 @@ public class game extends JFrame implements ActionListener {
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 50));
         panel1.setBackground(Color.pink);
         this.add(panel1, BorderLayout.CENTER); 
+
+        label1 = new JLabel("");
+        panel1.add(label1);
 
         //  turtlebutton = new JButton();
         // turtlebutton.setIcon(new ImageIcon(turtle));
@@ -76,14 +81,22 @@ public class game extends JFrame implements ActionListener {
             } else {
                 emptycardList.add(cardsList.get(randomIndex)); }
             panel1.add(cardlist[i].getCard());
-        }
 
-        
+        }
+        timer = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    updateTimer();
+                }
+            });
+        timer.start();
+
         this.pack();
         this.toFront();
+        timer.start();    
         //    this.setVisible(true);
     }
     public void actionPerformed(ActionEvent e){
+
         //   if(e.getSource() == turtlebutton){
         //      if(turtleCurrent.equals(card)){
         //         turtleCurrent = cardButton;
@@ -97,21 +110,32 @@ public class game extends JFrame implements ActionListener {
                     card1list = i;  
                     // System.out.println(card1list);
                     cardlist[i].cardsFlip();  
-                //    System.out.println(card1list);
+                    //    System.out.println(card1list);
                 } else if (card1list > -1 && card2list == -1) { 
                     if (card1list == i) {
                         card1list = -1;
                         cardlist[i].cardsFlip();
 
                     } else if (cardlist[i].cardType() == cardlist[card1list].cardType()) {
-                         cardlist[i].cardsFlip();
+                        cardlist[i].cardsFlip();
                         System.out.println(card1list);
                         System.out.println(card2list);
                         cardlist[i].getCard().removeActionListener(this);
                         cardlist[card1list].getCard().removeActionListener(this);
                         card1list = -1;  
                         card2list = -1;  
-                        
+                        found -= 1;  
+                        if( found == 0){
+                            JDialog won = new JDialog(this);    
+                            won.setBounds(200, 200, 500, 200);
+                            TextArea youWon = new TextArea("YOU WON!!!!!!");
+                            youWon.setFont(new Font("Verdana", Font.BOLD, 50));
+                            youWon.setEditable(false);
+                            won.add(youWon);    
+                            won.setVisible(true);
+                            won.setTitle("");
+                            timer.stop();
+                        }
                     } else {
                         cardlist[i].cardsFlip();
                         card2list = i;
@@ -120,12 +144,18 @@ public class game extends JFrame implements ActionListener {
                     cardlist[card1list].cardsFlip();
                     cardlist[card2list].cardsFlip();  
                     card2list = -1;
-                   cardlist[i].cardsFlip();
-                   card1list = i;  
+                    cardlist[i].cardsFlip();
+                    card1list = i;  
 
                 }
             }
         }
 
+                
+    }
+
+    private void updateTimer() {
+        seconds++;
+        label1.setText("time= " + seconds);
     }
 }
