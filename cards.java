@@ -32,6 +32,7 @@ public class cards extends JButton
         cardtype = stringcardtype;  //set card type to img
         cardbutton = new JButton(); //create a button for this card
         cardbutton.setIcon(new ImageIcon(question));  // default is question img
+        //cardbutton.setIcon(new ImageIcon(cardtype));  // default is question img
        // cardbutton.setMinimumSize(new Dimension(200, 200)); //size of button
         cardbutton.setPreferredSize(new Dimension(200, 200)); //size of button
         cardclicked = false; //card is first faced down

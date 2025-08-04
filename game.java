@@ -44,12 +44,12 @@ public class game extends JFrame implements ActionListener {
    
     {
         setTitle("sasha's super sick memory card game");
-        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //1000 high 1000 wide
+        this.getContentPane().setPreferredSize(new Dimension(950, 725)); //1000 high 1000 wide
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //set up panel
         panel1 = new JPanel();
-        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 30));
         panel1.setBackground(Color.pink);
         this.add(panel1, BorderLayout.CENTER); 
 
@@ -113,7 +113,7 @@ public class game extends JFrame implements ActionListener {
                         if( found == 0){
                             JDialog won = new JDialog(this);    
                             won.setBounds(200, 300, 500, 200);
-                            TextArea youWon = new TextArea("YOU WON!!!!!! \nTime taken= " + seconds); //dialog box to show won
+                            TextArea youWon = new TextArea("YOU WON!!!!!! \nTime taken= " + seconds + "s"); //dialog box to show won
                             youWon.setFont(new Font("Verdana", Font.BOLD, 50));
                             
                             youWon.setEditable(false);
