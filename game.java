@@ -23,20 +23,11 @@ import java.util.LinkedList;
 
 public class game extends JFrame implements ActionListener {
     JPanel panel1;
-
-    // String turtle = "turtle.png";
-    //   JButton turtlebutton;
-    // String turtleCurrent = turtle;
+        JLabel label1;
     int clicked;
-    JLabel label1;
 
-    private JLabel imageLabel;
-    private JButton switchButton;
     cards[] cardlist = new cards[12]; //maing empty card list of 12 cards so i can have them randomly put into this 
     Random rand = new Random(); //random number gen
-
-    Boolean card1 = false; // first card clicked
-    Boolean card2 = false; // second card clicked false at first cuz it wil be true when 
 
     int card1list = -1; //to put card1 into
     int card2list = -1;  //to put card 2 into 
@@ -49,113 +40,108 @@ public class game extends JFrame implements ActionListener {
     ArrayList<String> emptycardList = new ArrayList<>(); //empty array list to put card into wuhne two cards are created
     int found = cardsList.size();  // an integer for if the user gotten all the pairs
 
-    public JFrame game = new JFrame("sasha's super sick memory card game");
+    public JFrame game = new JFrame("");
+   
     {
-        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //1000 wide 1000 high
+        setTitle("sasha's super sick memory card game");
+        this.getContentPane().setPreferredSize(new Dimension(1000, 1000)); //1000 high 1000 wide
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //set up panel
         panel1 = new JPanel();
-        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 50));
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         panel1.setBackground(Color.pink);
         this.add(panel1, BorderLayout.CENTER); 
 
-        label1 = new JLabel("");
-        panel1.add(label1);
-
-        //  turtlebutton = new JButton();
-        // turtlebutton.setIcon(new ImageIcon(turtle));
-        // turtlebutton.setPreferredSize(new Dimension(200, 200));
-        // turtlebutton.addActionListener(this);
-        // panel1.add(turtlebutton);
-
-        for (int i = 0; i < cardlist.length; i++) { //making for loop for all the cards on the board, 12 of them, using ranodm to randomly place them
-            int randomIndex = rand.nextInt(cardsList.size()); 
-            cardlist[i] = new cards(cardsList.get(randomIndex));
-            cardlist[i].getCard().addActionListener(this);
-            //  int randomIndex = rand.nextInt(cardsList.size()); 
-            //System.out.println(cardsList.contains("giraffe.png"));
-
-            if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
-                cardsList.remove(randomIndex);  
-            } else {
-                emptycardList.add(cardsList.get(randomIndex)); }
-            panel1.add(cardlist[i].getCard());
-
-        }
-        timer = new Timer(1000, new ActionListener() {
+       
+         //timer goes every 1000 ms
+         timer = new Timer(1000, new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     updateTimer();
                 }
             });
-        timer.start();
-
+        // make 12 cards randomly selected
+        for (int i = 0; i < cardlist.length; i++) { 
+            int randomIndex = rand.nextInt(cardsList.size());  //the random image selected
+            cardlist[i] = new cards(cardsList.get(randomIndex)); //new card with chosen image
+            cardlist[i].getCard().addActionListener(this); //adding aciton listener so when player clicks it, can do something
+            //if card has already been added once remove from index
+            if (emptycardList.contains(cardsList.get(randomIndex))) { //https://www.geeksforgeeks.org/java/java-string-contains-method-example/
+                cardsList.remove(randomIndex);  
+            } else {
+                //else add it to index
+                emptycardList.add(cardsList.get(randomIndex)); }
+            //add so is visible
+            panel1.add(cardlist[i].getCard());
+        }
+       
+       
+        
         this.pack();
-        this.toFront();
-        timer.start();    
-        //    this.setVisible(true);
+        this.toFront(); 
     }
+   
+    //when action performed (when player clicks on card)
     public void actionPerformed(ActionEvent e){
-
-        //   if(e.getSource() == turtlebutton){
-        //      if(turtleCurrent.equals(card)){
-        //         turtleCurrent = cardButton;
-        //   } else{
-        //      turtleCurrent = turtleCurrent;
-        // }
-        // turtlebutton.setIcon(new ImageIcon(card));\\````
+        timer.start();
         for (int i = 0; i < cardlist.length; i++) { // for loop to go thru all the cards
-            if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked
+            if (e.getSource() == cardlist[i].getCard()){ // checks which card was clicked (the i is the card clicked)
+               //first card clicked
+               
                 if (card1list == -1) { 
-                    card1list = i;  
-                    // System.out.println(card1list);
-                    cardlist[i].cardsFlip();  
-                    //    System.out.println(card1list);
+                    card1list = i;  //the index of first card clicked
+                    cardlist[i].cardsFlip();  //flip card 
                 } else if (card1list > -1 && card2list == -1) { 
+                    //first card clicked, now waiting for second
                     if (card1list == i) {
+                        //if the user clicks the same card as last ( first card again)
                         card1list = -1;
-                        cardlist[i].cardsFlip();
-
-                    } else if (cardlist[i].cardType() == cardlist[card1list].cardType()) {
-                        cardlist[i].cardsFlip();
-                        System.out.println(card1list);
-                        System.out.println(card2list);
+                        cardlist[i].cardsFlip(); 
+                        //reset cards flip back down
+                        
+                    } else if (cardlist[i].cardType() == cardlist[card1list].cardType()) { //if 2nd card clicked and matches first, pair
+                       
+                        cardlist[i].cardsFlip(); //flip second  card
+                        
                         cardlist[i].getCard().removeActionListener(this);
-                        cardlist[card1list].getCard().removeActionListener(this);
+                        cardlist[card1list].getCard().removeActionListener(this); //disable action listeners cuz 
                         card1list = -1;  
                         card2list = -1;  
+                        
                         found -= 1;  
+                        //if all pairs have been found (game won)
                         if( found == 0){
                             JDialog won = new JDialog(this);    
-                            won.setBounds(200, 200, 500, 200);
-                            TextArea youWon = new TextArea("YOU WON!!!!!!");
+                            won.setBounds(200, 300, 500, 200);
+                            TextArea youWon = new TextArea("YOU WON!!!!!! \nTime taken= " + seconds); //dialog box to show won
                             youWon.setFont(new Font("Verdana", Font.BOLD, 50));
+                            
                             youWon.setEditable(false);
                             won.add(youWon);    
                             won.setVisible(true);
                             won.setTitle("");
-                            timer.stop();
+                            timer.stop(); //turn the timer off
                         }
                     } else {
-                        cardlist[i].cardsFlip();
-                        card2list = i;
+                        //when second card doesnt match first
+                        cardlist[i].cardsFlip(); //flip card to front
+                        card2list = i; 
                     } 
                 } else {
+                    //two cards selected, they dont match
                     cardlist[card1list].cardsFlip();
-                    cardlist[card2list].cardsFlip();  
-                    card2list = -1;
-                    cardlist[i].cardsFlip();
-                    card1list = i;  
+                    cardlist[card2list].cardsFlip();  //flip them both 
+                    card2list = -1; //reset the cards selection
+                    cardlist[i].cardsFlip(); //flip next selected card
+                    card1list = i;   // make it first selected card
 
                 }
             }
         }
 
-                
     }
-
     private void updateTimer() {
         seconds++;
-        label1.setText("time= " + seconds);
+        setTitle("time= " + seconds);
     }
 }
